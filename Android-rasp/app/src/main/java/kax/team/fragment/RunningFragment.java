@@ -4,13 +4,14 @@ package kax.team.fragment;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -18,18 +19,17 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import kax.team.PitchYawRoll;
 import kax.team.Position;
 import kax.team.R;
-import kax.team.service.RaspberryService;
 import xml.restfuldroid.core.WebService;
 import xml.restfuldroid.core.WebServicesBuilder;
 import xml.restfuldroid.core.model.Response;
-import xml.restfuldroid.core.resource.Resource;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,13 +38,19 @@ import xml.restfuldroid.core.resource.Resource;
  */
 public class RunningFragment extends Fragment implements View.OnClickListener {
 
-    public static final String REST = "http://192.168.0.102:8001/api/";
+    public static final String REST = "http://192.168.0.102:8001/api/tracking/";
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private ImageButton startButton;
     private boolean startShowed = true;
     private WebService webService;
     private int currentId;
+    private Timer trackingTimer;
+    private int count;
+    private RelativeLayout counterLayout;
+    private TextView counterView1;
+    private TextView counterView2;
+    private TextView kmTv;
 
     /**
      * Use this factory method to create a new instance of
@@ -69,11 +75,21 @@ public class RunningFragment extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_running, container, false);
 
         startButton = (ImageButton) v.findViewById(R.id.start_btn);
+
+        counterLayout = (RelativeLayout) v.findViewById(R.id.counterlayout);
+
+        counterView1 = (TextView) v.findViewById(R.id.counterview1);
+        counterView2 = (TextView) v.findViewById(R.id.counterview2);
+        kmTv = (TextView) v.findViewById(R.id.km_tv);
+
+
         startButton.setOnClickListener(this);
 
-        setUpMapIfNeeded();
 
-        new BackgroundData().execute();
+        count = 0;
+        changeTimerAndKm();
+
+        setUpMapIfNeeded();
 
         return v;
     }
@@ -107,7 +123,6 @@ public class RunningFragment extends Fragment implements View.OnClickListener {
             mMap = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map))
                     .getMap();
             mMap.setMyLocationEnabled(true);
-
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
                 setUpMap();
@@ -124,6 +139,7 @@ public class RunningFragment extends Fragment implements View.OnClickListener {
      */
     private void setUpMap() {
         Location location = getLastKnownLocation();
+
         if (location == null) return;
         double lat =  location.getLatitude();
         double lng = location.getLongitude();
@@ -160,16 +176,33 @@ public class RunningFragment extends Fragment implements View.OnClickListener {
             startButton.setImageResource(R.drawable.pausa);
             startButton.setMaxWidth((int) (50 * density));
             startButton.setMaxHeight((int) (50 * density));
-            //startTracking();
+            startTracking();
         } else {
             startButton.setImageResource(R.drawable.start_big_green);
             startButton.setMaxWidth((int) (175 * density));
             startButton.setMaxHeight((int) (175 * density));
-            //stopTracking();
+            stopTracking();
         }
 
         startShowed = !startShowed;
     }
+
+    private String placeZeroIfNeeded(int number) {
+        return (number >=10)? Integer.toString(number):String.format("0%s",Integer.toString(number));
+    }
+
+    private String[] secondsToString(int pTime) {
+        final int hour = pTime / 3600;
+        final int min = (pTime % 3600) / 60;
+        final int sec = pTime % 60;
+
+        final String strHour = placeZeroIfNeeded(hour);
+        final String strMin = placeZeroIfNeeded(min);
+        final String strSec = placeZeroIfNeeded(sec);
+
+        return new String[]{strHour, strMin, strSec};
+    }
+
 
     private void startTracking() {
         // Llamar a start de la API
@@ -177,64 +210,67 @@ public class RunningFragment extends Fragment implements View.OnClickListener {
             @Override
             public void run() {
                 Location l = getLastKnownLocation();
-                Response<Integer> response = webService.post(Integer.class, new Position(l.getLatitude(), l.getLongitude()), REST + "start");
+                Response<Integer> response = webService.post(Integer.class, new Position(l.getLatitude(), l.getLongitude()), REST + "start/");
                 currentId = response.data;
 
-                new Timer().schedule(new TimerTask() {
+                if (trackingTimer != null)
+                    trackingTimer.cancel();
+                trackingTimer = new Timer();
+                trackingTimer.schedule(new TimerTask() {
                     @Override
                     public void run() {
+
+                        changeTimerAndKm();
+
+
+
+
                         Location l = getLastKnownLocation();
-                        //webService.post(null, new Position(l.getLatitude(), l.getLongitude()), REST + "position", "", "");
+                        webService.post(Void.class, new Position(l.getLatitude(), l.getLongitude()), REST + "position/?id="+currentId);
                     }
-                }, 2000);
-                new TrackingTask().execute();
+                }, 0, 1000);
             }
-        });
+        }).start();
         // Llamar a un AsynTask k haga el tracking
     }
 
+    private void changeTimerAndKm() {
+        final String[] time = secondsToString(count);
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                counterView1.setText(String.format("%s:%s", time[0], time[1]));
+                counterView2.setText(String.format("%s", time[2]));
+            }
+        });
+
+        final DecimalFormat df = new DecimalFormat("#0.00");
+        DecimalFormatSymbols dfs = df.getDecimalFormatSymbols();
+        dfs.setDecimalSeparator('.');
+        df.setDecimalFormatSymbols(dfs);
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                kmTv.setText(df.format(count / 500.0f));
+            }
+        });
+
+        count++;
+
+    }
+
     private void stopTracking() {
+        if(trackingTimer != null)
+            trackingTimer.cancel();
+        count = 0;
+        changeTimerAndKm();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Location l = getLastKnownLocation();
+                webService.post(Void.class, new Position(l.getLatitude(), l.getLongitude()), REST + "stop/?id="+currentId);
+            }
+        }).start();
 
     }
-
-    private class TrackingTask extends AsyncTask<Void, Void, PitchYawRoll> {
-
-        @Override
-        protected PitchYawRoll doInBackground(Void... params) {
-
-            //Enviar constantemente mi localización
-            RaspberryService myService = (RaspberryService) Resource.createResource(RaspberryService.class, webService);
-            //while(true){
-            return myService.isFall();
-            //}
-        }
-
-        @Override
-        protected void onPostExecute(PitchYawRoll result) {
-            super.onPostExecute(result);
-        }
-    }
-
-    private class BackgroundData extends AsyncTask<Void, Void, PitchYawRoll> {
-
-        @Override
-        protected PitchYawRoll doInBackground(Void... params) {
-
-            RaspberryService myService = (RaspberryService) Resource.createResource(RaspberryService.class, webService);
-            //while(true){
-               return myService.isFall();
-            //}
-        }
-
-        @Override
-        protected void onPostExecute(PitchYawRoll result) {
-            super.onPostExecute(result);
-        }
-    }
-
-
-
-
-
-
 }

@@ -4,19 +4,19 @@ package kax.team;
  * Created by zenbook on 7/11/15.
  */
 public class Position {
-    private double latitude, longitude;
+    private double lat, longitude;
 
-    public Position(double latitude, double longitude) {
-        this.latitude = latitude;
+    public Position(double lat, double longitude) {
+        this.lat = lat;
         this.longitude = longitude;
     }
 
-    public double getLatitude() {
-        return latitude;
+    public double getLat() {
+        return lat;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
+    public void setLat(double lat) {
+        this.lat = lat;
     }
 
     public double getLongitude() {
