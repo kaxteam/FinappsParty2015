@@ -1,7 +1,9 @@
-package kax.team;
+package kax.team.service;
 
 import java.util.List;
 
+import kax.team.Orientation;
+import kax.team.PitchYawRoll;
 import xml.restfuldroid.annotation.Resource;
 import xml.restfuldroid.annotation.Service;
 

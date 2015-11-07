@@ -3,9 +3,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment"/>
+        android:layout_marginTop="80dp"
+        android:textSize="15sp"/>
+
+    <ImageButton
+        android:id="@+id/start_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:maxWidth="175dp"
+        android:maxHeight="175dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/start_big_green"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/km_layout"
+        android:layout_alignTop="@+id/km_layout"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="50dp"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/km_layout"
+        android:layout_above="@+id/map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+    </LinearLayout>
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_alignParentBottom="true"/>
+
+
 
 </RelativeLayout>
