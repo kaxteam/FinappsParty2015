@@ -1,0 +1,3 @@
+include ':app'
+include ':restfuldroid'
+project(':restfuldroid').projectDir=new File('C:\\Users\\Pc\\Desktop\\restfuldroid-newfeature-resources\\app')

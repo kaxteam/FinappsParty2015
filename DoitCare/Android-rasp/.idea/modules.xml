@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Android-rasp.iml" filepath="$PROJECT_DIR$/Android-rasp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../restfuldroid-newfeature-resources/app/restfuldroid.iml" filepath="$PROJECT_DIR$/../../restfuldroid-newfeature-resources/app/restfuldroid.iml" />
+    </modules>
+  </component>
+</project>

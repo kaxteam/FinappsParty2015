@@ -1,0 +1,38 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="400dp" android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_alignParentBottom="true"/>
+
+    <ImageButton
+        android:id="@+id/start_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+
+        android:maxWidth="70dp"
+        android:layout_marginLeft="50px"
+        android:maxHeight="70dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/green_ball"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user"
+        android:textSize="25dp"
+        android:layout_marginLeft="18dp"
+        android:id="@+id/textView"
+        android:layout_alignBottom="@+id/start_btn"
+        android:layout_toEndOf="@+id/start_btn" />
+
+
+</RelativeLayout>

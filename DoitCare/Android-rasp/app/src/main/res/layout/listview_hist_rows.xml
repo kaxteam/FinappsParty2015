@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:text="07/11/2015"
+        android:textSize="19dp"
+        android:layout_marginLeft="40px"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:textSize="16dp"
+        android:layout_marginLeft="40px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/duration"
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:textSize="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginBottom="5dp"
+        android:text="34:56"
+        android:id="@+id/textView3"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:textSize="16dp"
+        android:layout_width="wrap_content"
+
+        android:layout_marginLeft="40px"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/distance"
+        android:id="@+id/textView4"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:textSize="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginBottom="5dp"
+        android:text="10,14"
+        android:id="@+id/textView5"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:textSize="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:layout_marginLeft="185dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/km"
+        android:id="@+id/textView6"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:textSize="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginBottom="5dp"
+        android:text="4,2"
+        android:id="@+id/textView7"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:textSize="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        android:layout_marginLeft="185dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/kmH"
+        android:id="@+id/textView8"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:textSize="16dp"
+        android:layout_marginLeft="40px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/velProm"
+        android:id="@+id/textView9"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
+
+    <ImageView
+        android:layout_width="380px"
+        android:layout_height="230px"
+        android:id="@+id/imageView2"
+        android:background="@drawable/maps"
+        android:layout_marginTop="20px"
+        android:layout_marginLeft="700px" />
+
+
+</RelativeLayout>

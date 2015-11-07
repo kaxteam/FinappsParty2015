@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Doit</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="history">Historial</string>
+    <string name="duration">DURACIÓN</string>
+    <string name="distance">DISTANCIA</string>
+    <string name="velProm">V.PROM</string>
+    <string name="km">km</string>
+    <string name="kmH">km/h</string>
+    <string name="user">Maria Perez Garcia</string>
+</resources>

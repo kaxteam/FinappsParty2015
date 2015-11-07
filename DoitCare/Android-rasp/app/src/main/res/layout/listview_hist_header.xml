@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="170px"
+        android:layout_height="120px"
+        android:id="@+id/imageView"
+        android:background="@drawable/historial_big_green"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:layout_alignParentLeft="true" />
+
+    <TextView android:id="@+id/txtHeader"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:padding="10dp"
+        android:text="@string/history"/>
+</LinearLayout>
