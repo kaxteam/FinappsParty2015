@@ -1,0 +1,3 @@
+include ':app'
+include ':restfuldroid'
+project(':restfuldroid').projectDir=new File('/home/zenbook/Work/github/restfuldroid/app')
