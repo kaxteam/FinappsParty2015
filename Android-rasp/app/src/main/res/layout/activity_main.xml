@@ -1,0 +1,70 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/multiple_actions_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        fab:fab_addButtonColorNormal="@color/green_more_dark"
+        fab:fab_addButtonColorPressed="@color/green_dark"
+        fab:fab_addButtonPlusIconColor="@color/white"
+        fab:fab_addButtonSize="normal"
+        fab:fab_expandDirection="up"
+        fab:fab_labelStyle="@style/menu_labels_style">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/running_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickMenu"
+            fab:fab_colorNormal="@color/green"
+            fab:fab_colorPressed="@color/selected"
+            fab:fab_icon="@drawable/start_pequeno"
+            fab:fab_size="mini" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/history_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickMenu"
+            fab:fab_colorNormal="@color/green"
+            fab:fab_colorPressed="@color/selected"
+            fab:fab_icon="@drawable/historial"
+            fab:fab_size="mini" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/settings_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickMenu"
+            fab:fab_colorNormal="@color/green"
+            fab:fab_colorPressed="@color/selected"
+            fab:fab_icon="@drawable/settings"
+            fab:fab_size="mini" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/profile_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickMenu"
+            fab:fab_colorNormal="@color/green"
+            fab:fab_colorPressed="@color/selected"
+            fab:fab_icon="@drawable/user"
+            fab:fab_size="mini" />
+
+
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+</RelativeLayout>

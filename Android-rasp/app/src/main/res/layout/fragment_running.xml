@@ -1,0 +1,79 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/counterlayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:id="@+id/counterview1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35dp"
+            android:textColor="@color/green_dark"/>
+
+        <TextView
+            android:id="@+id/counterview2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/counterview1"
+            android:layout_alignBaseline="@+id/counterview1"
+            android:textSize="20dp"
+            android:textColor="@color/green_dark"/>
+
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/start_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:maxWidth="175dp"
+        android:maxHeight="175dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/start_big_green"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/km_layout"
+        android:layout_alignTop="@+id/km_layout"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="50dp"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/km_layout"
+        android:layout_above="@+id/map"
+        android:layout_marginBottom="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/km_tv"
+            android:text="0"
+            android:textSize="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text=" Km"/>
+
+
+    </LinearLayout>
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_alignParentBottom="true"/>
+
+
+
+</RelativeLayout>
